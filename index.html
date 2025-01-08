@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cryptography Examples</title>
+  <link rel="stylesheet" href="./style.css" />
+  <script type="module" src="src/main.js"></script>
+</head>
+
+<body class="bg-gray-100">
+  <div class="container mx-auto px-4 py-8" x-data="cryptoApp">
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-3xl font-bold text-center">Cryptography Playground</h1>
+      <a href="https://github.com/hasinhayder/cryptography-examples" target="_blank" class="text-gray-800 hover:text-blue-500">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+          <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.605-3.369-1.34-3.369-1.34-.454-1.152-1.11-1.459-1.11-1.459-.907-.62.069-.608.069-.608 1.003.07 1.531 1.031 1.531 1.031.892 1.528 2.341 1.087 2.91.831.092-.647.35-1.087.636-1.337-2.22-.252-4.555-1.11-4.555-4.943 0-1.091.39-1.983 1.029-2.682-.103-.253-.446-1.27.098-2.645 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.843c.85.004 1.705.115 2.504.337 1.908-1.294 2.748-1.025 2.748-1.025.546 1.375.202 2.392.1 2.645.64.699 1.027 1.591 1.027 2.682 0 3.841-2.339 4.687-4.566 4.935.36.31.679.921.679 1.855 0 1.34-.012 2.421-.012 2.749 0 .268.18.58.688.481C19.135 20.162 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
+        </svg>
+      </a>
+    </div>
+
+
+    <!-- Algorithm Selection -->
+    <div class="mb-6">
+      <label class="block text-gray-700 text-sm font-bold mb-2">
+        Select Encryption Method:
+      </label>
+      <select x-model="selectedMethod" class="w-full p-2 border rounded-lg" @change="clearOutput()">
+        <template x-for="method in methods" :key="method.id">
+          <option :value="method.id" x-text="method.name"></option>
+        </template>
+      </select>
+    </div>
+
+    <!-- Input Section -->
+    <div class="mb-6">
+      <label class="block text-gray-700 text-sm font-bold mb-2">
+        Input Text:
+      </label>
+      <textarea x-model="input" class="w-full p-2 border rounded-lg" rows="4" placeholder="Enter text to encrypt/encode"></textarea>
+    </div>
+
+    <!-- Key Input (for methods that require it) -->
+    <div class="mb-6" x-show="currentMethod.requiresKey">
+      <label class="block text-gray-700 text-sm font-bold mb-2">
+        Encryption Key:
+      </label>
+      <div class="flex gap-4">
+        <input type="text" x-model="key" class="flex-1 p-2 border rounded-lg" placeholder="Enter encryption key">
+        <button @click="generateExampleKey()" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
+          Add Example Key
+        </button>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex gap-4 mb-6">
+      <button @click="encrypt()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+        Encrypt/Encode
+      </button>
+      <button @click="decrypt()" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600" x-show="currentMethod.canDecrypt">
+        Decrypt/Decode
+      </button>
+    </div>
+
+    <!-- Output Section -->
+    <div class="mb-6">
+      <div class="flex justify-between items-center mb-2">
+        <label class="block text-gray-700 text-sm font-bold">
+          Output:
+        </label>
+        <button @click="copyToInput()" class="text-sm bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+          Copy to Input
+        </button>
+      </div>
+      <textarea x-model="output" class="w-full p-2 border rounded-lg bg-gray-50" rows="4" readonly></textarea>
+    </div>
+
+    <!-- Method Description -->
+    <div class="bg-white p-4 rounded-lg shadow">
+      <h3 class="font-bold mb-2" x-text="currentMethod.name"></h3>
+      <p class="text-gray-600" x-html="currentMethod.description"></p>
+    </div>
+
+    <!-- add a text Made with Love by Hasin Hayder -->
+    <div class="text-center mt-8 text-gray-600">
+      Made with ❤️ by <a href="https://github.com/hasinhayder" target="_blank" class="text-blue-500">Hasin Hayder</a>
+    </div>
+  </div>
+</body>
+
+</html>

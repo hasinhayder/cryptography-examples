@@ -1,0 +1,21 @@
+{
+  "name": "crypto-demo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.4.2",
+    "autoprefixer": "^10.4.17",
+    "tailwindcss": "^3.4.1",
+    "postcss": "^8.4.35"
+  },
+  "dependencies": {
+    "alpinejs": "^3.13.5",
+    "crypto-js": "^4.2.0"
+  }
+}

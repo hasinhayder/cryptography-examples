@@ -1,6 +1,10 @@
 # Cryptography Examples
 
-This project is a Cryptography Playground that allows you to experiment with various encryption and encoding methods. It provides a user-friendly interface to select different cryptographic algorithms, input text, and see the encrypted or encoded output.
+A versatile encryption and hashing playground built with Alpine.js and CryptoJS, supporting multiple ciphers, encoding methods, and hash functions. Explore, learn, and experiment with secure cryptographic techniques!
+
+## Live Demo
+
+Experience the tool in action with our live demo! - [Live Demo](https://cryptography-examples.netlify.app/) 
 
 ## Features
 
@@ -28,7 +32,7 @@ This project is a Cryptography Playground that allows you to experiment with var
   npm install 
   npm run dev
   ```
-  
+
 ## Usage
 
 1. Select an encryption method from the dropdown menu.

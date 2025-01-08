@@ -24,7 +24,7 @@
     <!-- Algorithm Selection -->
     <div class="mb-6">
       <label class="block text-gray-700 text-sm font-bold mb-2">
-        Select Encryption Method:
+        Select Encryption/Hash Method:
       </label>
       <select x-model="selectedMethod" class="w-full p-2 border rounded-lg" @change="clearOutput()">
         <template x-for="method in methods" :key="method.id">
